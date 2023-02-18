@@ -1,5 +1,6 @@
 #ifndef VECTOR_H
 #define VECTOR_H
+#include"allocator.h"
 
 template< typename _TP>
 class Vector{
@@ -21,10 +22,14 @@ public:
     size_type size() const { return size_type( end() - begin()); }    
     size_type capacity(){ return size_type( end_of_storage - begin()); }
     bool empty() { return end() == begin(); }
-
+    void init_with_value( size_t n, value_type value);
     Vector( ): start( nullptr), finish( nullptr), end_of_storage( nullptr){ }
     Vector( size_t n){
-        
+
     }
 };
+template< typename T>
+void  Vector<T>::init_with_value( size_type n, T value){
+    begin = 
+}
 #endif  //!VECTOR_H
