@@ -1,7 +1,7 @@
 #ifndef ALLOCATOR_H
 #define ALLOCATOR_H
 #include<utility>
-
+#include"construct.h"
 //用于资源分配与释放，调用construct进行对象的构造、析构
 
 template < typename _TP>
