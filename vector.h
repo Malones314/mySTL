@@ -2,8 +2,10 @@
 #define VECTOR_H
 #include"allocator.h"
 
+namespace mySTL {
+
 template< typename _TP>
-class Vector{
+class vector{
 public:
     typedef _TP value_type;
     typedef value_type* iterator;
@@ -23,13 +25,16 @@ public:
     size_type capacity(){ return size_type( end_of_storage - begin()); }
     bool empty() { return end() == begin(); }
     void init_with_value( size_t n, value_type value);
-    Vector( ): start( nullptr), finish( nullptr), end_of_storage( nullptr){ }
-    Vector( size_t n){
+    vector( ): start( nullptr), finish( nullptr), end_of_storage( nullptr){ }
+    vector( size_t n){
 
     }
 };
 template< typename T>
-void  Vector<T>::init_with_value( size_type n, T value){
+void  vector<T>::init_with_value( size_type n, T value){
     begin = 
 }
+
+} // namespace mySTL
+
 #endif  //!VECTOR_H

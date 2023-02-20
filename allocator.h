@@ -4,6 +4,8 @@
 #include"construct.h"
 //用于资源分配与释放，调用construct进行对象的构造、析构
 
+namespace mySTL {
+
 template < typename _TP>
 class allocator{
 public:
@@ -41,6 +43,29 @@ _TP* allocator<_TP>::allocate( size_type n){
     return static_cast<_TP*>(new( n * sizeof(_TP)));
 }
 
+template < typename _TP>
+void allocator<_TP>::deallocate( _TP* ptr){
+    if( ptr != nullptr)
+        delete( ptr);
+}
+
+template< typename _TP>
+void allocator<_TP>::deallocate( _TP* ptr, size_t){
+    if( ptr != nullptr)
+        delete( ptr);
+}
+
+template< typename _TP>
+void allocator<_TP>::construct( _TP* ptr){
+    mySTL::construct( ptr);
+}
+
+template< typename _TP>
+void construct( pointer ptr, value_type v){
+    mySTL::construct( ptr, v);
+}
 
 
+
+} // namespace mySTL
 #endif
