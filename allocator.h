@@ -28,11 +28,10 @@ public:
 
     void destroy( pointer ptr);
     void destroy( pointer first, pointer last);
-
 };
 
 template < typename _TP>
-_TP* allocator<_TP>::allocate(){
+_TP* allocator<_TP>::allocate( ){
     return static_cast<_TP*>(new(sizeof(_TP)));
 }
 
@@ -44,13 +43,13 @@ _TP* allocator<_TP>::allocate( size_type n){
 }
 
 template < typename _TP>
-void allocator<_TP>::deallocate( _TP* ptr){
+void allocator< _TP>::deallocate( _TP* ptr){
     if( ptr != nullptr)
         delete( ptr);
 }
 
 template< typename _TP>
-void allocator<_TP>::deallocate( _TP* ptr, size_t){
+void allocator< _TP>::deallocate( _TP* ptr, size_t n){
     if( ptr != nullptr)
         delete( ptr);
 }
@@ -61,11 +60,24 @@ void allocator<_TP>::construct( _TP* ptr){
 }
 
 template< typename _TP>
-void construct( pointer ptr, value_type v){
+void allocator<_TP>::construct( pointer ptr, value_type v){
     mySTL::construct( ptr, v);
 }
 
+template< typename _TP> template< typename ...Args>
+void allocator<_TP>::construct( _TP* ptr, Args&& ...args){
+    mySTL::construct( ptr, std::forward<Args>(args)...);
+}
 
+template< typename _TP>
+void allocator<_TP>::destroy( _TP* ptr){
+    mySTL::destroy( ptr);
+}
 
-} // namespace mySTL
+template< typename _TP>
+void allocator<_TP>::destroy( _TP* first, _TP* last){
+    mySTL::destroy( first, last);
+}
+
+} // namespace mySTL；
 #endif

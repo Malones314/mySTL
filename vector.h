@@ -19,21 +19,31 @@ protected:
 public:
     iterator begin() { return start; }
     const_iterator begin() { return start; }
+    iterator rbegin(){ return finish; }
+    const_iterator rbegin(){ return finish; }
     iterator end() { return finish; }
     const_iterator end() { return finish; }
+    iterator rend(){ return start; }
+    const_iterator rend(){ return start; }
     size_type size() const { return size_type( end() - begin()); }    
     size_type capacity(){ return size_type( end_of_storage - begin()); }
     bool empty() { return end() == begin(); }
-    void init_with_value( size_t n, value_type value);
-    vector( ): start( nullptr), finish( nullptr), end_of_storage( nullptr){ }
-    vector( size_t n){
-
-    }
+    vector(): start( nullptr), finish( nullptr), end_of_storage( nullptr){ }
+    vector( size_t n);
+    vector( size_t n, value_type value);
+    void insert( value_type& value);
+    void reserve();
+    void clear();
+    void emplace( iterator ptr, value_type value);
+    void push_back( value_type value);
+    value_type pop_back( );
+    void swap( iterator left, iterator right);
+private:
+    void init_fill( size_type n, value_type &value);    //给了值的初始化
+    void try_init();    //不带初始值只分配内存
 };
-template< typename T>
-void  vector<T>::init_with_value( size_type n, T value){
-    begin = 
-}
+
+
 
 } // namespace mySTL
 
