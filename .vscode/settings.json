@@ -1,6 +1,15 @@
 {
     "files.associations": {
         "memory_resource": "cpp",
-        "*.tcc": "cpp"
+        "*.tcc": "cpp",
+        "array": "cpp",
+        "string": "cpp",
+        "unordered_map": "cpp",
+        "memory": "cpp",
+        "optional": "cpp",
+        "fstream": "cpp",
+        "sstream": "cpp",
+        "functional": "cpp",
+        "tuple": "cpp"
     }
 }
