@@ -21,13 +21,9 @@ private:
     void try_init();    //不带初始值只分配内存
 public:
     iterator begin() { return start; }
-    const_iterator begin() { return start; }
     iterator rbegin(){ return finish; }
-    const_iterator rbegin(){ return finish; }
     iterator end() { return finish; }
-    const_iterator end() { return finish; }
     iterator rend(){ return start; }
-    const_iterator rend(){ return start; }
     size_type size() const { return size_type( end() - begin()); }    
     size_type capacity(){ return size_type( end_of_storage - begin()); }
     bool empty() { return end() == begin(); }
@@ -41,8 +37,17 @@ public:
     //在ptr后插入value，空间富足
     void insert_( iterator ptr, value_type& value){ 
         mySTL::copy_some( ptr+1, end(), ptr+2);
-        ptr
-        
+        *(ptr+1) = value;
+    }
+
+    //重新分配空间并插入元素到ptr后面
+    void reallocator_insert( ){
+
+    }
+
+    //重新分配空间并在ptr处构造元素
+    void reallocator_emplace(){
+
     }
     iterator insert( iterator ptr, value_type& value){
         size_type _n = ptr - begin();
@@ -62,7 +67,12 @@ public:
     void clear();
     void emplace( iterator ptr, value_type value);
     void push_back( value_type value);
-    value_type pop_back( );
+    value_type pop_back( ){
+        if( !empty()){
+            mySTL::destroy( finish );
+            --finish;
+        }
+    }
     void swap( iterator left, iterator right);
 
 };

@@ -1,7 +1,9 @@
 #ifndef ALLOCATOR_H
 #define ALLOCATOR_H
 #include<utility>
+#include <type_traits>
 #include"construct.h"
+
 //用于资源分配与释放，调用construct进行对象的构造、析构
 
 namespace mySTL {
@@ -32,14 +34,14 @@ public:
 
 template < typename _TP>
 _TP* allocator<_TP>::allocate( ){
-    return static_cast<_TP*>(new(sizeof(_TP)));
+    return static_cast<_TP*>( ::operator new( sizeof( _TP)));
 }
 
 template < typename _TP>
 _TP* allocator<_TP>::allocate( size_type n){
     if( n == 0)
         return nullptr;
-    return static_cast<_TP*>(new( n * sizeof(_TP)));
+    return static_cast<_TP*>( ::operator new( n * sizeof(_TP)));
 }
 
 template < typename _TP>

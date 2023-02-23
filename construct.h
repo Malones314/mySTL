@@ -57,7 +57,7 @@ void destroy_some( _Iterator first, _Iterator last, std::false_type){
 
 template< typename _Iterator>
 void destroy( _Iterator first, _Iterator last){
-    destroy_some( first, last, std::is_trivially_destructible < typename iterator_traits< _Iterator>::type>{});
+    destroy_some( first, last, std::is_trivially_destructible < typename std::iterator_traits< _Iterator>::type>{});
 }
 
 } // namespace mySTL
